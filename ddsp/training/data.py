@@ -162,7 +162,13 @@ class RecordProvider(DataProvider):
     self._audio_length = example_secs * sample_rate
     self._feature_length = example_secs * frame_rate
     super().__init__(sample_rate)
+    self._frame_rate = frame_rate
     self._data_format_map_fn = data_format_map_fn
+
+  @property
+  def frame_rate(self):
+    """Return dataset feature frame rate, must be defined in the constructor."""
+    return self._frame_rate
 
   @property
   def default_file_pattern(self):
